@@ -1,7 +1,7 @@
 # pyOKD
 Object Key Database for Python 2.7
 
-Simple solution for providing shared information. User defined information is stored in a dictionary that is hosted by an asynchio server.
+Simple solution for providing shared information between processes, programs, and network. User defined information is stored in a dictionary that is hosted by an asynchio server.
 
 To start a server run (found in run server script):
 
