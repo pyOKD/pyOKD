@@ -1,13 +1,13 @@
-import asyncore
-import socket
-import time
-import subprocess
-import json
+import asyncore, json, os, socket, subprocess, time
 
 class DATABASE():
     def __init__(self):
-        with open("saved_buffer.json", "r") as f:
-            self.info1 = json.load(f)
+        if os.path.isfile("saved_buffer.json"):
+            print "Previous buffer initialized"
+            with open("saved_buffer.json", "r") as f:
+                self.info1 = json.load(f)
+        else:
+            self.info1 = {}
 
 class EchoHandler(asyncore.dispatcher_with_send):
     
@@ -60,9 +60,12 @@ class EchoHandler(asyncore.dispatcher_with_send):
             return "Saved buffer"
 
     def load_buffer(self, arg1 = None, arg2 = None):
-        with open("saved_buffer.json", "r") as f:
-            self.DATABASE.info1 = json.load(f)
-            return "Loaded Buffer"
+        if os.path.isfile("saved_buffer.json"):
+            with open("saved_buffer.json", "r") as f:
+                self.DATABASE.info1 = json.load(f)
+                return "Loaded Buffer"
+        else:
+            return "No previous saved buffer"
 
 
 
@@ -74,6 +77,7 @@ class Server(asyncore.dispatcher):
         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
         self.set_reuse_addr()
         self.bind((host, port))
+        print "Server started at {}:{}".format(host, port)
         self.listen(5)
 
     def handle_accept(self):
