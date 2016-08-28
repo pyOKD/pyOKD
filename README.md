@@ -28,3 +28,17 @@ admin.py is a simple script that acts as a shell to the server. Valid commands a
 Note: set and get stores and loads strings only.
 
 
+Want to run a server and client in the same file you say?
+Running this code runs the server in a new thread. No further action required. The server will run for as long as the program is running.
+
+import threading
+
+def serve():
+    pyOKD.Server('0.0.0.0', 8080).loop()
+
+t = threading.Thread(name="Server", target=serve)
+t.daemon =True
+t.start()
+
+client = pyOKD.client()
+
