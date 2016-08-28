@@ -10,7 +10,7 @@ pyOKD.Server('0.0.0.0', 8080).loop()
 
 To interact with the server, make a client object:
 
-client = client()
+client = pyOKD.client()
 
 To store information:
 
