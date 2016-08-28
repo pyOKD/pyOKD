@@ -16,7 +16,7 @@ To store information:
 
 client.store( index, data )
 index is a string that represents the key to where your data is to be stored.
-data can be any data type. Data types are preserved through the use of cPickle
+data can be any data type. Data types are preserved through the use of JSON.
 
 To get information:
 
