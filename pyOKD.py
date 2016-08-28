@@ -93,7 +93,7 @@ class Server(asyncore.dispatcher):
 
 class client():
     def __init__(self):
-        self.host = '10.0.0.24'
+        self.host = '127.0.0.1'
         self.port = 8080 
         self.size = 1024 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
