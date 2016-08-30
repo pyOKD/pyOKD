@@ -34,6 +34,9 @@ class EchoHandler(asyncore.dispatcher_with_send):
                     self.send(self.set_buffer(command[1], command[2]))
                 else:
                     self.send("set requires 3 arguments")
+                    
+            elif command[0] == 'dump':
+                self.send(str(self.DATABASE.info1))
             else:
                 self.send("Does not exist")
 
